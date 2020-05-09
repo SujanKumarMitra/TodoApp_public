@@ -18,7 +18,9 @@ public class SignupService {
 		if (userExists(user)) {
 			throw new UserAlreadyExistsException();
 		}
-		return repository.save(user);
+
+		User savedUser = repository.save(user);
+		return savedUser;
 	}
 
 	public boolean userExists(User user) {

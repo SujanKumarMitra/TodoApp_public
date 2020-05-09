@@ -5,7 +5,6 @@ import java.text.SimpleDateFormat;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -16,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.herokuapp.skmtodoapp.entity.Todo;
 import com.herokuapp.skmtodoapp.entity.User;
 import com.herokuapp.skmtodoapp.exception.model.BadArgumentException;
+import com.herokuapp.skmtodoapp.exception.model.UserNotFoundException;
 import com.herokuapp.skmtodoapp.service.TodoService;
+import com.herokuapp.skmtodoapp.service.UserService;
 
 @Controller
 @RequestMapping("/todo")
@@ -27,9 +28,9 @@ public class TodoController {
 	
 	@Autowired
 	private SimpleDateFormat dateFormat;
-	
+
 	@Autowired
-	private ApplicationContext context;
+	private UserService userService;
 	
 
 	@RequestMapping
@@ -39,8 +40,8 @@ public class TodoController {
 
 	@RequestMapping("/upcoming")
 	public String showUpcoming(Model model, HttpSession session) throws Exception {
-		
-		User user = context.getBean(User.class);
+	
+		User user = userService.getUserBean();
 
 		model.addAttribute("todos", todoService.getTodos(user));
 		model.addAttribute("error", session.getAttribute("error"));
@@ -54,9 +55,9 @@ public class TodoController {
 	}
 
 	@RequestMapping("/missed")
-	public String showMissed(Model model, HttpSession session) {
+	public String showMissed(Model model, HttpSession session) throws UserNotFoundException {
 		
-		User user = context.getBean(User.class);
+		User user = userService.getUserBean();
 		
 		model.addAttribute("todos", todoService.getMissedTodos(user));
 		model.addAttribute("error", session.getAttribute("error"));
@@ -70,9 +71,9 @@ public class TodoController {
 	}
 
 	@RequestMapping("/completed")
-	public String showCompleted(Model model, HttpSession session) {
+	public String showCompleted(Model model, HttpSession session) throws UserNotFoundException {
 		
-		User user = context.getBean(User.class);
+		User user = userService.getUserBean();
 		
 		model.addAttribute("todos", todoService.getAllCompletedTodos(user));
 		model.addAttribute("error", session.getAttribute("error"));
@@ -96,7 +97,7 @@ public class TodoController {
 
 		todo.setDeadLine(dateFormat.parse(date));
 		
-		User user = context.getBean(User.class);
+		User user = userService.getUserBean();
 
 		todo.setId(0);
 		todo.setCompleted(false);
@@ -143,7 +144,7 @@ public class TodoController {
 	@RequestMapping("/markComplete/all")
 	public String markAllTodoComplete() throws Exception {
 		
-		User user = context.getBean(User.class);
+		User user = userService.getUserBean();
 
 		todoService.markAllTodoAsComplete(user);
 		return "redirect:/todo";

@@ -101,11 +101,11 @@
             <label for="lastName" class="">Last Name</label>
             <input type="text" name="lastName" value="${user.lastName}" id="lastName" class="form-control" required>
             <br />
-            <label for="email" class="">Email</label>
-            <input type="email" name="email" value="${user.email}" id="lastName" class="form-control" required>
+            <label hidden for="email" class="">Email</label>
+            <input hidden type="email" name="email" value="${user.email}" id="lastName" class="form-control" required>
             <br />
-            <label for="password" class="">Password</label>
-            <input type="password" name="password" id="lastName" value="${user.password}" class="form-control" required>
+            <label hidden for="password" class="">Password</label>
+            <input hidden type="password" name="password" id="lastName" value="${user.password}" class="form-control" required>
             <br />
             <button class="btn btn-lg btn-primary btn-block" type="submit">Update</button>
             <br />

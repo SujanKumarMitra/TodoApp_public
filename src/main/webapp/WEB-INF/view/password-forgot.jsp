@@ -1,4 +1,5 @@
-<%@ page contentType="text/html"  %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 <!doctype html>
 <html lang="en">
 
@@ -14,33 +15,30 @@
   <link rel="stylesheet" href="/css/login-signup.css">
   <link rel="icon" href="/images/icon.png" type="image/png">
   <link rel="stylesheet" href="/css/alert.css">
-  <title>Sign up</title>
+  <title>Log in</title>
 </head>
 
 <body class="text-center">
 
-  <form class="form-signin" action="processSignup" method="post">
+  <form class="form-signin" action="processForgotPassword" method="post">
+  	<c:if test="${param.error != null }">
+  		<div class="error">${sessionScope.SPRING_SECURITY_LAST_EXCEPTION.message}</div>
+  	</c:if>
+  	<c:if test="${param.logout != null }">
+  		<div class="success">You have been logged out!</div>
+  	</c:if>
     <div class="error">${error}</div>
     <div class="warning">${warning}</div>
     <div class="success">${success}</div>
-    <h1 class="h3 mb-3 font-weight-normal">Sign up</h1>
-    <label for="inputEmail" class="sr-only">First Name</label>
-    <input type="text" name="firstName" id="inputEmail" class="form-control" placeholder="First Name" required
-      autofocus>
-    <br />
-    <label for="inputEmail" class="sr-only">Last Name</label>
-    <input type="text" name="lastName" id="inputEmail" class="form-control" placeholder="Last Name" required autofocus>
-    <br />
+    <h1 class="h3 mb-3 font-weight-normal">Please enter your email</h1>
     <label for="inputEmail" class="sr-only">Email address</label>
     <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" required
       autofocus>
     <br />
-    <label for="inputPassword" class="sr-only">Password</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
-    <br>
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
-    <h5>Already Signed up?</h5>
-    <a class="btn btn-lg btn-primary btn-block" href="/login">Log in</a>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+    
+    <security:csrfMetaTags/>
+    <security:csrfInput/>
   </form>
 
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"

@@ -105,6 +105,7 @@
             <br />
 
             <a class="btn btn-lg btn-primary btn-block" href="/profile/update">Update Profile</a><br />
+            <a class="btn btn-lg btn-primary btn-block" href="/profile/changePassword">Change Password</a><br />
             <a onclick="if(!confirm('Are you sure you want to delete your profile?')) return false;"
               class="btn btn-lg btn-primary btn-block" href="/profile/delete">Delete Profile</a>
 

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -45,7 +46,7 @@ public class UserDetailsImpl implements UserDetails {
 	@Column(name = "expired_credentials", columnDefinition = "boolean")
 	private boolean expiredCredentials;
 
-	@OneToOne(fetch = FetchType.EAGER)
+	@OneToOne(fetch = FetchType.EAGER,cascade = CascadeType.REMOVE)
 	@JoinColumn(name = "user_id")
 	private User user;
 

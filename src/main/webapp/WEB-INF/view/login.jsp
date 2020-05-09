@@ -40,9 +40,11 @@
     <br>
     <button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
     <h5>OR</h5>
-    <security:csrfInput/>
-    <security:csrfMetaTags/>
     <a class="btn btn-lg btn-primary btn-block" href="/signup">Sign up</a>
+    <h5>Forgot Password?</h5>
+    <a class="btn btn-lg btn-primary btn-block" href="/account/forgotPassword">Forgot Password</a>
+    <security:csrfMetaTags/>
+    <security:csrfInput/>
   </form>
 
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"

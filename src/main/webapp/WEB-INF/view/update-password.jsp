@@ -14,33 +14,37 @@
   <link rel="stylesheet" href="/css/login-signup.css">
   <link rel="icon" href="/images/icon.png" type="image/png">
   <link rel="stylesheet" href="/css/alert.css">
-  <title>Sign up</title>
+  <title>Update Password</title>
 </head>
 
 <body class="text-center">
 
-  <form class="form-signin" action="processSignup" method="post">
+  <form class="form-signin" action="updatePassword" method="post">
+    <label hidden for="userId" class="">User Id</label>
+    <input hidden type="number" name="id" value="${user.id}" id="userId" class="form-control" required>
+    <br />
+    <label hidden for="firstName" class="">First Name</label>
+    <input hidden size="50" type="text" name="firstName" value="${user.firstName}" id="firstName" class="form-control"
+      required>
+    <br />
+    <label hidden for="lastName" class="">Last Name</label>
+    <input hidden type="text" name="lastName" value="${user.lastName}" id="lastName" class="form-control" required>
+    <br />
+    <label hidden for="email" class="">Email</label>
+    <input hidden type="email" name="email" value="${user.email}" id="lastName" class="form-control" required>
+    <br />
     <div class="error">${error}</div>
     <div class="warning">${warning}</div>
     <div class="success">${success}</div>
-    <h1 class="h3 mb-3 font-weight-normal">Sign up</h1>
-    <label for="inputEmail" class="sr-only">First Name</label>
-    <input type="text" name="firstName" id="inputEmail" class="form-control" placeholder="First Name" required
-      autofocus>
+    <h1 class="h3 mb-3 font-weight-normal">Please enter the details:</h1>
+    <label for="password" class="">Old Password</label>
+    <input type="password" name="oldPassword" id="lastName" class="form-control" required>
     <br />
-    <label for="inputEmail" class="sr-only">Last Name</label>
-    <input type="text" name="lastName" id="inputEmail" class="form-control" placeholder="Last Name" required autofocus>
+    <label for="password" class="">New Password</label>
+    <input type="password" name="password" id="lastName" class="form-control" required>
     <br />
-    <label for="inputEmail" class="sr-only">Email address</label>
-    <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" required
-      autofocus>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Update</button>
     <br />
-    <label for="inputPassword" class="sr-only">Password</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
-    <br>
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
-    <h5>Already Signed up?</h5>
-    <a class="btn btn-lg btn-primary btn-block" href="/login">Log in</a>
   </form>
 
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
